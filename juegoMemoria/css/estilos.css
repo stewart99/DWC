@@ -1,0 +1,20 @@
+
+table{
+
+
+   margin:auto;
+   
+
+
+}
+
+
+table,tr,td{
+    
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 30px;
+
+
+
+}

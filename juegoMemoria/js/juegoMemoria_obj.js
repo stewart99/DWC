@@ -12,7 +12,6 @@ class Tabla{
         }
 
 
-
     //Pediremos al usuario que introduzca las filas y las columnas 
     Comprobacion(){
 

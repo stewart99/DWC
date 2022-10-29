@@ -1,4 +1,5 @@
 
+//Creamos la clase tabla
 class Tabla{
 
 
@@ -12,6 +13,7 @@ class Tabla{
 
 
 
+    //Pediremos al usuario que introduzca las filas y las columnas 
     Comprobacion(){
 
         this.filas=prompt("Dime el numero de filas");
@@ -32,7 +34,7 @@ class Tabla{
     
 
     }
-        
+        //Creamos el tablero
         crearTablero(){
 
             this.tablaMemoria=[];
@@ -60,7 +62,7 @@ class Tabla{
         }
 
 
-
+        //pintamos la tabla
         pintarTablaMemoria(){
 
             document.write('<table>');
@@ -89,7 +91,7 @@ class Tabla{
 }
 
 
-
+//Creamos la clase JuegoMemoria
 class JuegoMemoria extends Tabla{
 
 
@@ -101,7 +103,7 @@ class JuegoMemoria extends Tabla{
         }
 
 
-    
+        //Colocamos las parejas
         colocarParejas(){
 
 

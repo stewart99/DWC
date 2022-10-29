@@ -65,6 +65,8 @@ class Tabla{
         //pintamos la tabla
         pintarTablaMemoria(){
 
+            document.write("<h1>Juego de Memoria</h1>")
+
             document.write('<table>');
 
         for (let i = 0; i < this.filas; i++) {

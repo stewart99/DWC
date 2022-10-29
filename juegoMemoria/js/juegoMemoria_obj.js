@@ -149,8 +149,7 @@ class JuegoMemoria extends Tabla{
         }
 
         
-        
-       
+          
         contadorNumparejas++;
         contadorParejas++;
         repeticion=true;

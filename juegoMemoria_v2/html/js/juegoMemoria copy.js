@@ -1,4 +1,5 @@
 
+//Creamos la clase tabla
 class Tabla{
 
 
@@ -11,7 +12,7 @@ class Tabla{
         }
 
 
-
+    //Pediremos al usuario que introduzca las filas y las columnas 
     Comprobacion(){
 
         this.filas=prompt("Dime el numero de filas");
@@ -32,7 +33,7 @@ class Tabla{
     
 
     }
-        
+        //Creamos el tablero
         crearTablero(){
 
             this.tablaMemoria=[];
@@ -60,8 +61,10 @@ class Tabla{
         }
 
 
-
+        //pintamos la tabla
         pintarTablaMemoria(){
+
+            document.write("<h1>Juego de Memoria</h1>")
 
             document.write('<table>');
 
@@ -89,7 +92,7 @@ class Tabla{
 }
 
 
-
+//Creamos la clase JuegoMemoria
 class JuegoMemoria extends Tabla{
 
 
@@ -101,11 +104,11 @@ class JuegoMemoria extends Tabla{
         }
 
 
-    
+        //Colocamos las parejas
         colocarParejas(){
 
 
-    let parejas=["img/mario.png","img/caparazon.png","img/goomba.png","img/koopa.png","img/lakitu.png","img/luigi.png","img/luma.png","img/luna.png","img/mario.png","img/seta.png"];
+    let parejas=["img/mario.png","img/caparazon.png","img/goomba.png","img/koopa.png","img/lakitu.png","img/luigi.png","img/luma.png","img/luna.png","img/bullet.png","img/seta.png"];
     let posFila=0;
     let posColumna=0;
     let contadorNumparejas=0;
@@ -127,7 +130,6 @@ class JuegoMemoria extends Tabla{
             this.tablaMemoria[posFila][posColumna]=parejas[contadorParejas];
 
 
-        
             while(repeticion){
 
                 posFila=Math.floor(Math.random()*this.filas);
@@ -144,10 +146,13 @@ class JuegoMemoria extends Tabla{
                 
     
                 }
-
+    
+        
     
         }
-       
+
+        
+          
         contadorNumparejas++;
         contadorParejas++;
         repeticion=true;
@@ -194,9 +199,6 @@ memoria.crearTablero();
 memoria.colocarParejas();
 memoria.pintarTablaMemoria();
 console.log(memoria.tablaMemoria)
-
-
-
 
 
 

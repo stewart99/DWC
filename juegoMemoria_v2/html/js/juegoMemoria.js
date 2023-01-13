@@ -1,5 +1,4 @@
 
-//Creamos la clase tabla
 class Tabla{
 
 
@@ -12,7 +11,7 @@ class Tabla{
         }
 
 
-    //Pediremos al usuario que introduzca las filas y las columnas 
+
     Comprobacion(){
 
         this.filas=prompt("Dime el numero de filas");
@@ -33,7 +32,7 @@ class Tabla{
     
 
     }
-        //Creamos el tablero
+        
         crearTablero(){
 
             this.tablaMemoria=[];
@@ -61,10 +60,8 @@ class Tabla{
         }
 
 
-        //pintamos la tabla
-        pintarTablaMemoria(){
 
-            document.write("<h1>Juego de Memoria</h1>")
+        pintarTablaMemoria(){
 
             document.write('<table>');
 
@@ -89,10 +86,42 @@ class Tabla{
 
 
 
+
+
+
+
+dibujarTableroDOM(){
+
+
+    let tabla = document.createElement('table');
+    let fila;
+    let columna;
+
+
+    for (let i = 0; i < this.filas; i++) {
+        
+        fila = document.createElement('tr');
+        tabla.appendChild(fila);
+
+    
+    for (let j = 0; j < this.columnas; j++) {
+        
+        columna = document.createElement('td');
+        columna.id = `f${i}_c${j}`;
+        columna.dataset.fila=i;
+        columna.dataset.columna = j;
+        fila.appendChild(columna);
+        
+    }
+        
+    }
+
+    document.body.appendChild(tabla);
+
 }
 
+}
 
-//Creamos la clase JuegoMemoria
 class JuegoMemoria extends Tabla{
 
 
@@ -100,15 +129,16 @@ class JuegoMemoria extends Tabla{
 
             super(filas,columnas);
 
+            this.dibujarTableroDOM();
 
         }
 
 
-        //Colocamos las parejas
+    
         colocarParejas(){
 
 
-    let parejas=["img/mario.png","img/caparazon.png","img/goomba.png","img/koopa.png","img/lakitu.png","img/luigi.png","img/luma.png","img/luna.png","img/bullet.png","img/seta.png"];
+    let parejas=["img/mario.png","img/caparazon.png","img/goomba.png","img/koopa.png","img/lakitu.png","img/luigi.png","img/luma.png","img/luna.png","img/mario.png","img/seta.png"];
     let posFila=0;
     let posColumna=0;
     let contadorNumparejas=0;
@@ -130,6 +160,7 @@ class JuegoMemoria extends Tabla{
             this.tablaMemoria[posFila][posColumna]=parejas[contadorParejas];
 
 
+        
             while(repeticion){
 
                 posFila=Math.floor(Math.random()*this.filas);
@@ -146,13 +177,10 @@ class JuegoMemoria extends Tabla{
                 
     
                 }
-    
-        
+
     
         }
-
-        
-          
+       
         contadorNumparejas++;
         contadorParejas++;
         repeticion=true;
@@ -170,40 +198,87 @@ class JuegoMemoria extends Tabla{
 
     
     }
+
+
+
+    dibujarTableroDOM(){
+        
+
+        super.dibujarTableroDOM();
+
+        let celda;
+
+        this.destapar = this.destapar.bind(this);
+
+
+    for (let i = 0; i < this.filas; i++) {
+        
+        for (let j = 0; j < this.columnas; j++) {
+           
+            celda=document.getElementById(`f${i}_c${j}`);
+            
+            celda.addEventListener('click',this.destapar);
+            
+        }
+        
+    }
+
+    }
+
+
+    destapar(elEvento){
+
+        let evento = elEvento || window.event;
+        let celda = evento.currentTarget;
+        let fila = celda.dataset.fila;
+        let columna=celda.dataset.columna;
+        let valorCelda = this.tablaMemoria[fila][columna];
+        let idcelda = celda.id;
+        let  imagen = document.createElement('img');
+        imagen.src=valorCelda;
+        let rutaimagen=imagen.src.split('/').slice(-2).join('/')
+        
+
+        if(celda.lastChild == null){
+
+
+            celda.appendChild(imagen);
+
+
+        if(celda.lastChild == celda.id){
+
+
+            alert("hola");
+
+
+        }
+           
+        }
+
+
+        
+        
+
+        
+
+
+      
+    }
+
+
+
     
 
 }
 
 
 
-
-
+window.onload = function() {
+    let buscaminas1 = new JuegoMemoria(2,2); 
+    buscaminas1.crearTablero();
+    buscaminas1.colocarParejas();
     
-
-        
-
-
-
-
-        
-
-
-
-
-
-
-
-let memoria = new JuegoMemoria(5,5);
-memoria.Comprobacion();
-memoria.crearTablero();
-memoria.colocarParejas();
-memoria.pintarTablaMemoria();
-console.log(memoria.tablaMemoria)
-
-
-
-
-
+}
 
 
 

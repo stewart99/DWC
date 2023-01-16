@@ -128,8 +128,10 @@ class JuegoMemoria extends Tabla{
         constructor(filas,columnas){
 
             super(filas,columnas);
-
+            this.comprobar;
+            this.contadorClick=0;
             this.dibujarTableroDOM();
+           
 
         }
 
@@ -205,7 +207,7 @@ class JuegoMemoria extends Tabla{
         
 
         super.dibujarTableroDOM();
-
+       
         let celda;
 
         this.destapar = this.destapar.bind(this);
@@ -233,32 +235,63 @@ class JuegoMemoria extends Tabla{
         let fila = celda.dataset.fila;
         let columna=celda.dataset.columna;
         let valorCelda = this.tablaMemoria[fila][columna];
-        let idcelda = celda.id;
         let  imagen = document.createElement('img');
         imagen.src=valorCelda;
-        let rutaimagen=imagen.src.split('/').slice(-2).join('/')
-        
+        let rutaimagen=imagen.src.split('/').slice(-2).join('/');
+
+      
 
         if(celda.lastChild == null){
 
+        
 
             celda.appendChild(imagen);
 
+            this.contadorClick++;
 
-        if(celda.lastChild == celda.id){
-
-
-            alert("hola");
+            if(rutaimagen != this.comprobar && this.comprobar != null){
 
 
-        }
+                 console.log("disntito"); 
+               
+                celda.removechild(imagen);
+
+            }else if(rutaimagen == this.comprobar && this.comprobar != null){
+
+                console.log("iguales"); 
+
+
+
+            }
+
+         
+          
+            if(this.contadorClick == 2){
+
+
+                this.contadorClick=0;
+
+
+            }
+
+  
+           console.log(this.contadorClick);
            
         }
 
 
+    
+
         
+        this.comprobar=valorCelda;
         
 
+
+        
+  
+
+     
+   
         
 
 
@@ -279,6 +312,18 @@ window.onload = function() {
     buscaminas1.colocarParejas();
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

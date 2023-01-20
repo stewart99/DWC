@@ -265,7 +265,7 @@ destapar(elEvento){
              console.log("distinto"); 
 
 
-             setTimeout(borrar,5000);
+             setTimeout(borrar,1000);
 
              function borrar(){
 
@@ -305,23 +305,50 @@ destapar(elEvento){
     this.ultimafoto=valorCelda;
     
 
+}
+
+
+
+crearboton(){
+
+
+let boton = document.createElement('button');
+boton.innerText="Reiniciar";
+
+
+document.body.appendChild(boton);
+
+this.reiniciarTablero = this.reiniciarTablero.bind(this);
+
+
+boton.addEventListener('click',this.reiniciarTablero);
 
     
+}
+
+reiniciarTablero(elEvento){
+
+   
+    let respuesta =  window.confirm("Quieres reniniciar el juego")
+
+    if(respuesta == true){
+
+        
+
+        location.reload();
 
 
- 
 
-    
+    }
 
+   
+}
 
-  
 }
 
 
 
 
-
-}
 
 
 
@@ -329,8 +356,12 @@ window.onload = function() {
 let buscaminas1 = new JuegoMemoria(2,2); 
 buscaminas1.crearTablero();
 buscaminas1.colocarParejas();
+buscaminas1.crearboton();
 
 }
+
+
+
 
 
 

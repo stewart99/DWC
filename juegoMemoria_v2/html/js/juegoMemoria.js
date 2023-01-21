@@ -1,4 +1,5 @@
-class Tabla{
+
+    class Tabla{
 
 
     constructor(filas,columnas){
@@ -129,9 +130,12 @@ class JuegoMemoria extends Tabla{
         super(filas,columnas);
         this.comprobar;
         this.idultimacelda;
+        this.resultado=0;
         this.contadorClick=0;
+        this.numIntentos=0;
+        this.Comprobacion();
         this.dibujarTableroDOM();
-       
+
 
     }
 
@@ -273,23 +277,51 @@ destapar(elEvento){
              celda.removeChild(celda.lastChild);
              ultimafoto.removeChild(ultimafoto.lastChild);
 
+             
 
              }
+
+
+             this.numIntentos++;
                
            
         }else{
 
-            console.log("iguales");
-        
+            if(this.numIntentos == 0){
+
+                this.resultado=this.resultado + 10;
+               
+
+            }else if(this.numIntentos == 1){
+
+
+                this.resultado=this.resultado + 7.5;
+
+
+            }else if(this.numIntentos == 2){
+
+                this.resultado=this.resultado + 2.5;
+
+
+            }else{
+
+
+                this.resultado=this.resultado + 0;
+
+
+            }
+
+
 
     }
 
-         
+
+    this.marcadorActualizado();
+
+
     }
 
- 
-    console.log(this.tablaMemoria)
-
+   
     if(this.contadorClick == 2){
 
         this.contadorClick=0;
@@ -298,8 +330,6 @@ destapar(elEvento){
 }
 
     }
-
-
 
     this.idultimacelda=idcelda;
     this.ultimafoto=valorCelda;
@@ -329,7 +359,7 @@ boton.addEventListener('click',this.reiniciarTablero);
 reiniciarTablero(elEvento){
 
    
-    let respuesta =  window.confirm("Quieres reniniciar el juego")
+    let respuesta =  window.confirm("Quieres reniniciar el juego");
 
     if(respuesta == true){
 
@@ -344,23 +374,47 @@ reiniciarTablero(elEvento){
    
 }
 
+crearmarcador(){
+
+
+let marcador = document.createElement("div");
+
+document.body.appendChild(marcador);
+
+marcador.id="marcador";
+marcador.innerHTML="Puntuacion  " +  this.resultado   + "/" + this.filas * this.columnas / 2 * 10;
+
+
+
+    
 }
 
 
+marcadorActualizado(){
+
+
+    marcador.innerHTML= "Puntuacion  " +  this.resultado   + "/" + this.filas * this.columnas / 2 * 10;
+  
+
+}
+
+
+}
 
 
 
 
 
 window.onload = function() {
-let buscaminas1 = new JuegoMemoria(2,2); 
+let buscaminas1 = new JuegoMemoria(); 
 buscaminas1.crearTablero();
 buscaminas1.colocarParejas();
 buscaminas1.crearboton();
+buscaminas1.crearmarcador();
+
+
 
 }
-
-
 
 
 

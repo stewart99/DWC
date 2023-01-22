@@ -131,7 +131,9 @@ class JuegoMemoria extends Tabla{
         this.comprobar;
         this.idultimacelda;
         this.resultado=0;
+        this.totalCeldas=0;
         this.contadorClick=0;
+        this.numeroParejas=0;
         this.numIntentos=0;
         this.Comprobacion();
         this.dibujarTableroDOM();
@@ -148,10 +150,9 @@ let parejas=["img/mario.png","img/caparazon.png","img/goomba.png","img/koopa.png
 let posFila=0;
 let posColumna=0;
 let contadorNumparejas=0;
-let contadorParejas=0;
 let repeticion=true;
 let numeroCasillas=(this.filas * this.columnas)/2;
-
+let contadorParejas=0;
 
 while(contadorNumparejas < numeroCasillas){
 
@@ -186,6 +187,8 @@ while(contadorNumparejas < numeroCasillas){
 
 
     }
+
+    
    
     contadorNumparejas++;
     contadorParejas++;
@@ -198,6 +201,8 @@ while(contadorNumparejas < numeroCasillas){
 
         contadorParejas = 0;
     }
+
+    console.log(this.tablaMemoria);
 }  
     
 }
@@ -311,7 +316,7 @@ destapar(elEvento){
 
             }
 
-
+            this.numeroParejas++;
 
     }
 
@@ -339,7 +344,7 @@ destapar(elEvento){
 
 
 
-crearboton(){
+crearBoton(){
 
 
 let boton = document.createElement('button');
@@ -374,15 +379,17 @@ reiniciarTablero(elEvento){
    
 }
 
-crearmarcador(){
+crearMarcador(){
 
 
 let marcador = document.createElement("div");
 
 document.body.appendChild(marcador);
 
+this.totalCeldas=this.filas * this.columnas / 2;
+
 marcador.id="marcador";
-marcador.innerHTML="Puntuacion  " +  this.resultado   + "/" + this.filas * this.columnas / 2 * 10;
+marcador.innerText="Puntuacion  " +  this.resultado   + "/" + this.totalCeldas * 10;
 
 
 
@@ -393,10 +400,31 @@ marcador.innerHTML="Puntuacion  " +  this.resultado   + "/" + this.filas * this.
 marcadorActualizado(){
 
 
-    marcador.innerHTML= "Puntuacion  " +  this.resultado   + "/" + this.filas * this.columnas / 2 * 10;
+    marcador.innerText= "Puntuacion  " +  this.resultado   + "/" + this.totalCeldas * 10;
   
 
+
+    if(this.numeroParejas == this.totalCeldas){
+
+
+        setTimeout(this.ganador.bind(this));
+
+
+    }
+    
+
 }
+
+
+ganador(){
+
+
+    alert("Enhorabuena has ganado la partida con un resultado de " + this.resultado + " puntos con un maximo de " + this.totalCeldas * 10);
+
+}
+
+
+
 
 
 }
@@ -409,13 +437,12 @@ window.onload = function() {
 let buscaminas1 = new JuegoMemoria(); 
 buscaminas1.crearTablero();
 buscaminas1.colocarParejas();
-buscaminas1.crearboton();
-buscaminas1.crearmarcador();
+buscaminas1.crearBoton();
+buscaminas1.crearMarcador();
 
 
 
 }
-
 
 
 

@@ -11,28 +11,8 @@
     }
 
 
+    //Crear Tablero
 
-Comprobacion(){
-
-    this.filas=prompt("Dime el numero de filas");
-    this.columnas=prompt("Dime el numero de columnas");
-    
-
-
-    if((this.filas * this.columnas) % 2 != 0 || this.filas <= 0 || this.columnas <=0){
-
-
-
-        alert("El numero introducido de filas o de las columnas es impar");
-
-        this.Comprobacion();
-
-    }
-
-
-
-}
-    
     crearTablero(){
 
         this.tablaMemoria=[];
@@ -60,7 +40,7 @@ Comprobacion(){
     }
 
 
-
+    
     pintarTablaMemoria(){
 
         document.write('<table>');
@@ -89,6 +69,7 @@ Comprobacion(){
 
 
 
+// creamos el tablero con dom 
 
 dibujarTableroDOM(){
 
@@ -122,6 +103,7 @@ document.body.appendChild(tabla);
 
 }
 
+
 class JuegoMemoria extends Tabla{
 
 
@@ -142,6 +124,30 @@ class JuegoMemoria extends Tabla{
     }
 
 
+//Pediremos al usuario que introduzca el numero de filas y columnas
+
+Comprobacion(){
+
+    this.filas=prompt("Dime el numero de filas");
+    this.columnas=prompt("Dime el numero de columnas");
+    
+
+
+    if((this.filas * this.columnas) % 2 != 0 || this.filas <= 0 || this.columnas <=0){
+
+
+
+        alert("El numero introducido de filas o de las columnas es impar");
+
+        this.Comprobacion();
+
+    }
+
+
+
+}
+
+    //Colocamos las parejas
 
     colocarParejas(){
 
@@ -237,6 +243,9 @@ for (let i = 0; i < this.filas; i++) {
 }
 
 
+
+
+
 destapar(elEvento){
 
     let evento = elEvento || window.event;
@@ -275,6 +284,8 @@ destapar(elEvento){
 
 
              setTimeout(borrar,1000);
+
+             //Borrara las fotos de las celdas si son diferentes 
 
              function borrar(){
 
@@ -344,6 +355,8 @@ destapar(elEvento){
 
 
 
+//Creamos el boton de reiniciar el tablero
+
 crearBoton(){
 
 
@@ -360,6 +373,9 @@ boton.addEventListener('click',this.reiniciarTablero);
 
     
 }
+
+
+// Evento para reniciar el tablero 
 
 reiniciarTablero(elEvento){
 
@@ -379,6 +395,9 @@ reiniciarTablero(elEvento){
    
 }
 
+
+// creamos el marcador para añadir los puntos
+
 crearMarcador(){
 
 
@@ -396,6 +415,8 @@ marcador.innerText="Puntuacion  " +  this.resultado   + "/" + this.totalCeldas *
     
 }
 
+
+//Se actualizara el marcador cada vez que encontremos una pareja
 
 marcadorActualizado(){
 
@@ -415,6 +436,8 @@ marcadorActualizado(){
 
 }
 
+
+// Este mensaje se mostrara cuando finalize la partida 
 
 ganador(){
 
@@ -443,8 +466,6 @@ buscaminas1.crearMarcador();
 
 
 }
-
-
 
 
 
